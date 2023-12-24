@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="32x32" href="./interactive-rating-component-main/images/favicon-32x32.png">
+    <link rel="stylesheet" href="Card.css">
+  <title>Frontend Mentor | Interactive rating component</title>
+</head>
+<body>
+    <div class="container">
+        <button class="star">
+            <img src="./interactive-rating-component-main/images/icon-star.svg" alt="">
+        </button>
+        <div class="suggest">
+            <h1>How did we do?</h1>
+            <p> Please let us know how we did with your support request. All feedback is appreciated 
+                to help us improve our offering!</p>
+        </div>
+        <div class="row">
+        <button class="star-num" id="rating1" onclick="selectRating(1)">
+            <p>1</p>
+        </button>
+        <button class="star-num" id="rating2" onclick="selectRating(2)">
+            <p>2</p>
+        </button>
+        <button class="star-num" id="rating3" onclick="selectRating(3)">
+            <p>3</p>
+        </button>
+        <button class="star-num" id="rating4" onclick="selectRating(4)">
+            <p>4</p>
+        </button>
+        <button class="star-num" id="rating5" onclick="selectRating(5)">
+            <p>5</p>
+        </button>
+    </div>
+    <button type="submit" class="submit" onclick="nextStep()">Submit</button>
+    </div>
+
+    <div class="container-second">
+        <img class="phone" src="./interactive-rating-component-main/images/illustration-thank-you.svg" alt="">
+        <div class="select" id="select">
+            <!-- You selected 4 of 5 -->
+        </div>
+        <div class="thank">
+            <h1>Thank You!</h1>
+            <p>We appreciate you taking the time to give a rating. If you ever need more support, 
+                don’t hesitate to get in touch!
+              </p>
+        </div>
+    </div>
+    <script>
+     
+       
+            const container = document.querySelector(".container");
+        const containerSecond = document.querySelector(".container-second");
+        var selectedRating = null;        
+   
+         // select and unselect number 
+         function selectRating(rating) {
+        // Remove the "selected" class from the previously selected rating
+        if (selectedRating !== null) {
+            document.getElementById("rating" + selectedRating).classList.remove("selected");
+        }
+
+        // Set the selected rating
+        selectedRating = rating;
+
+        // Add the "selected" class to the clicked rating button
+        document.getElementById("rating" + selectedRating).classList.add("selected");
+
+         // display selected rating 
+         const select = document.getElementById("select");
+        select.innerHTML = `You selected ${rating} out of 5`;
+    }
+
+        // display next card
+        
+        function nextStep(){
+         
+        
+            if(selectedRating != null){
+                container.style.display = "none";
+                containerSecond.style.display = "block";
+            } else {
+                alert("Please Select a rating before proceeding.")
+            }
+        }
+       
+    </script>
+</body>
+</html>
